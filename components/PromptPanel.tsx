@@ -7,9 +7,11 @@ import { Icon } from "./M3Node";
 import { Field, IconBtn, Segmented } from "./ui";
 import { t, useLang } from "@/lib/i18n";
 import { buildYaml, YamlMode } from "@/lib/yaml";
+import { buildFlowchart } from "@/lib/flowchart";
+import { MermaidViewer } from "./MermaidViewer";
 import { saveYaml } from "@/lib/project";
 
-type ExportFormat = "prompt" | "yaml";
+type ExportFormat = "prompt" | "yaml" | "flowchart";
 
 export function PromptPanel({
   doc,
@@ -63,11 +65,12 @@ export function PromptPanel({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 12, gap: 10 }}>
-      {/* Format selector: AI Prompt vs YAML */}
+      {/* Format selector: AI Prompt vs YAML vs Flowchart */}
       <Segmented<ExportFormat>
         options={[
           { key: "prompt", icon: "auto_awesome", label: t("formatPrompt", lang), title: "AI Prompt" },
           { key: "yaml", icon: "code", label: t("formatYaml", lang), title: "YAML (Power Automate)" },
+          { key: "flowchart", icon: "schema", label: t("formatFlowchart", lang), title: "Mermaid Flowchart" },
         ]}
         value={format}
         onChange={setFormat}
@@ -156,7 +159,7 @@ export function PromptPanel({
             {copiedPrompt ? t("copied", lang) : t("copyPrompt", lang)}
           </button>
         </>
-      ) : (
+      ) : format === "yaml" ? (
         <>
           <Segmented<YamlMode>
             options={[
@@ -255,6 +258,8 @@ export function PromptPanel({
             </button>
           </div>
         </>
+      ) : (
+        <MermaidViewer code={buildFlowchart(doc, widths)} palette={p} doc={doc} />
       )}
     </div>
   );

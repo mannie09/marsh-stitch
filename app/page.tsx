@@ -86,6 +86,7 @@ import { Logo } from "@/components/Logo";
 import { PartsPalette } from "@/components/PartsPalette";
 import { PromptPanel } from "@/components/PromptPanel";
 import { GitHubLink, Mode, Toolbar } from "@/components/Toolbar";
+import { TemplatesModal } from "@/components/TemplatesModal";
 import { AiActionKey, AiPanel, aiErrorText } from "@/components/AiPanel";
 import { TidyState } from "@/components/ui";
 import { AiSettings, DEFAULT_AI, hasKey, isSecureUrl, loadAiSettings, proposeBehavior, proposeDescription, pushHistory, saveAiSettings } from "@/lib/ai";
@@ -369,6 +370,7 @@ export default function Page() {
   const [isMobile, setIsMobile] = useState(false);
   const [sheet, setSheet] = useState<"edit" | "settings" | null>(null);
   const [confirmClear, setConfirmClear] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(false);
   /** frame being rendered offscreen for the PNG export */
   const [exportFrame, setExportFrame] = useState<Frame | null>(null);
   const [toast, setToast] = useState<string | null>(null);
@@ -3843,6 +3845,7 @@ export default function Page() {
             note={aiNote}
             onSaveProject={() => saveProject(doc)}
             onOpenProject={() => projectFileRef.current?.click()}
+            onTemplates={() => setShowTemplates(true)}
             onShare={!isMobile ? () => setShareOpen(true) : undefined}
             shareState={draftBusy ? "busy" : draftBefore ? "review" : "idle"}
             onDraftKeep={keepDraft}
@@ -4131,6 +4134,18 @@ export default function Page() {
           onConfirm={clearAll}
         />
       </div>
+
+      {showTemplates && (
+        <TemplatesModal
+          palette={p}
+          onClose={() => setShowTemplates(false)}
+          onSelect={(tmplDoc) => {
+            setShowTemplates(false);
+            importDoc(tmplDoc);
+            showAiNote("Template loaded!", "check");
+          }}
+        />
+      )}
 
       <AnimatePresence>
         {previewId !== null && frames.length > 0 && (

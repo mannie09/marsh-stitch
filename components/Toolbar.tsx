@@ -85,6 +85,7 @@ export function Toolbar({
   note,
   onSaveProject,
   onOpenProject,
+  onTemplates,
   onShare,
   shareState = "idle",
   onDraftKeep,
@@ -121,6 +122,7 @@ export function Toolbar({
   note?: { text: string; icon: string } | null;
   onSaveProject?: () => void;
   onOpenProject?: () => void;
+  onTemplates?: () => void;
   /** opens the "ask an AI" dialog from the left end of the zoom row */
   onShare?: () => void;
   /** busy while a model drafts; review while the draft waits to be kept or undone */
@@ -426,6 +428,15 @@ export function Toolbar({
                 </div>
               )}
             </Popover>
+          )}
+          {onTemplates && (
+            <IconBtn
+              icon="space_dashboard"
+              p={p}
+              onClick={onTemplates}
+              title={t("corporateTemplates", lang)}
+              size={40}
+            />
           )}
         </Pill>
       </div>

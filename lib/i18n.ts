@@ -255,6 +255,8 @@ export const UI = {
   copyPrompt: { en: "Copy prompt" },
   formatPrompt: { en: "Prompt" },
   formatYaml: { en: "YAML" },
+  formatFlowchart: { en: "Flowchart" },
+  corporateTemplates: { en: "Templates" },
   copyYaml: { en: "Copy YAML" },
   downloadYaml: { en: "Download .yaml" },
   yamlPowerAutomate: { en: "Power Automate" },
