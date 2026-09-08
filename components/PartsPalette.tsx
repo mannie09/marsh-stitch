@@ -3,14 +3,8 @@
 import { useMemo, useState } from "react";
 import { CATEGORIES, KIND_ORDER, KIND_SPEC, Category, Kind, Palette } from "@/lib/tokens";
 import { Icon } from "./M3Node";
-import { KIND_TEXT, t, useLang } from "@/lib/i18n";
+import { t, useLang } from "@/lib/i18n";
 import { Field, Section, Tile } from "./ui";
-
-const CATEGORY_TEXT = {
-  ja: { actions: "操作", navigation: "ナビゲーション", containment: "コンテナ", inputs: "入力", content: "コンテンツ", progress: "進捗" },
-  zh: { actions: "操作", navigation: "导航", containment: "容器", inputs: "输入", content: "内容", progress: "进度" },
-  ko: { actions: "동작", navigation: "내비게이션", containment: "컨테이너", inputs: "입력", content: "콘텐츠", progress: "진행 상태" },
-} satisfies Record<string, Record<Category, string>>;
 
 export function PartsPalette({
   palette: p,
@@ -25,16 +19,16 @@ export function PartsPalette({
 }) {
   const lang = useLang();
   const [q, setQ] = useState("");
-  const labelOf = (k: Kind) => lang === "en" ? KIND_SPEC[k].label : KIND_TEXT[lang][k]?.noun ?? KIND_SPEC[k].label;
+  const labelOf = (k: Kind) => KIND_SPEC[k].label;
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
     if (!s) return KIND_ORDER;
     return KIND_ORDER.filter((k) => {
       const sp = KIND_SPEC[k];
-      return labelOf(k).toLowerCase().includes(s) || sp.label.toLowerCase().includes(s) || sp.noun.includes(s) || k.toLowerCase().includes(s);
+      return labelOf(k).toLowerCase().includes(s) || sp.noun.toLowerCase().includes(s) || k.toLowerCase().includes(s);
     });
-  }, [q, lang]);
+  }, [q]);
 
   const tile = (k: Kind) => {
     const s = KIND_SPEC[k];
@@ -80,7 +74,7 @@ export function PartsPalette({
           </div>
         ) : (
           CATEGORIES.map((c) => (
-            <Section key={c.key} id={`cat:${c.key}`} icon={c.icon} title={lang === "en" ? c.label : CATEGORY_TEXT[lang][c.key]} p={p}>
+            <Section key={c.key} id={`cat:${c.key}`} icon={c.icon} title={c.label} p={p}>
               <div style={grid}>{KIND_ORDER.filter((k) => KIND_SPEC[k].category === c.key).map(tile)}</div>
             </Section>
           ))

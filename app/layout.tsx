@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://mannie09.github.io"),
   title: "M3E Canvas",
   description:
-    "Sketch Material 3 Expressive screens in the browser and turn them into vibe-coding prompts. / Material 3 Expressive の画面をブラウザで組み立てて、そのままプロンプトに。",
+    "Sketch Material 3 Expressive screens in the browser and turn them into vibe-coding prompts.",
   openGraph: {
     title: "M3E Canvas",
     description: "Design Material 3 Expressive screens, link them, preview them, and copy a prompt for your AI coding tool.",
@@ -27,7 +27,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ja">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -86,7 +86,6 @@ import { Logo } from "@/components/Logo";
 import { PartsPalette } from "@/components/PartsPalette";
 import { PromptPanel } from "@/components/PromptPanel";
 import { GitHubLink, Mode, Toolbar } from "@/components/Toolbar";
-import { LangMenu } from "@/components/Menus";
 import { AiActionKey, AiPanel, aiErrorText } from "@/components/AiPanel";
 import { TidyState } from "@/components/ui";
 import { AiSettings, DEFAULT_AI, hasKey, isSecureUrl, loadAiSettings, proposeBehavior, proposeDescription, pushHistory, saveAiSettings } from "@/lib/ai";
@@ -100,7 +99,7 @@ import { ShareDialog } from "@/components/ShareMenu";
 import { ColorPanel } from "@/components/ColorPanel";
 import { MotionPanel, ShapePanel, TypePanel } from "@/components/ThemePanel";
 import { ThemeContext, ensureFontLoaded, ensureLangFontLoaded } from "@/lib/theme";
-import { BottomSheet, MobileActionBar, MobileInspector, MobileLang, MobileSettings } from "@/components/Mobile";
+import { BottomSheet, MobileActionBar, MobileInspector, MobileSettings } from "@/components/Mobile";
 import { ConfirmDialog, IconBtn, Segmented } from "@/components/ui";
 import { Lang, LangContext, SEED_TEXT, getLang, isLang, setGlobalLang, t, translateDefaultFrameName, translateDefaultText } from "@/lib/i18n";
 
@@ -348,7 +347,7 @@ export default function Page() {
   const [theme, setTheme] = useState<Theme>(DEFAULT_THEME);
   const patchTheme = (patch: Partial<Theme>) => setTheme((t) => ({ ...t, ...patch }));
   const [frame, setFrame] = useState<FrameMode>("phone");
-  const [lang, setLang] = useState<Lang>("ja");
+  const [lang, setLang] = useState<Lang>("en");
   const changeLanguage = (next: Lang) => {
     setGlobalLang(next);
     initialLangRef.current = next;
@@ -368,7 +367,7 @@ export default function Page() {
     futureRef.current = futureRef.current.map((snap) => translateSnapshot(snap, next));
   };
   const [isMobile, setIsMobile] = useState(false);
-  const [sheet, setSheet] = useState<"edit" | "settings" | "lang" | null>(null);
+  const [sheet, setSheet] = useState<"edit" | "settings" | null>(null);
   const [confirmClear, setConfirmClear] = useState(false);
   /** frame being rendered offscreen for the PNG export */
   const [exportFrame, setExportFrame] = useState<Frame | null>(null);
@@ -485,7 +484,7 @@ export default function Page() {
   /** groups that must reposition without animating on the next render */
   const instantRef = useRef<Set<string>>(new Set());
   const loadedRef = useRef(false);
-  const initialLangRef = useRef<Lang>("ja");
+  const initialLangRef = useRef<Lang>("en");
   /** A saved document or the first viewport initialization prevents later reseeding. */
   const hadDocRef = useRef(false);
 
@@ -648,7 +647,7 @@ export default function Page() {
         if (isProject(value)) setDraftBefore(value);
         else localStorage.removeItem(BEFORE_KEY);
       }
-      let initialLang: Lang = "ja";
+      let initialLang: Lang = "en";
       const u = localStorage.getItem(UI_KEY);
       if (u) {
         const ui = JSON.parse(u);
@@ -664,9 +663,8 @@ export default function Page() {
           setLang(ui.lang);
         }
       } else {
-        const nl = (navigator.language ?? "").toLowerCase();
-        initialLang = nl.startsWith("zh") ? "zh" : nl.startsWith("ko") ? "ko" : nl.startsWith("ja") ? "ja" : "en";
-        setLang(initialLang);
+        initialLang = "en";
+        setLang("en");
         queueMicrotask(() => fitRef.current());
       }
       setGlobalLang(initialLang);
@@ -3415,7 +3413,6 @@ export default function Page() {
                 </div>
               ))}
               <div style={{ flex: 1 }} onClick={() => !leftOpen && setLeftOpen(true)} />
-              <LangMenu p={p} onLang={changeLanguage} side="right" size={44} />
               <GitHubLink p={p} size={44} />
             </div>
             {leftOpen && (
@@ -3855,7 +3852,6 @@ export default function Page() {
             rightInset={showRight ? rightW : 0}
             mobile={isMobile}
             onSettings={() => setSheet(sheet === "settings" ? null : "settings")}
-            onLangSheet={() => setSheet(sheet === "lang" ? null : "lang")}
             onPrompt={async () => {
               try {
                 await navigator.clipboard.writeText(effectivePrompt(doc, widths, lang));
@@ -3938,18 +3934,6 @@ export default function Page() {
             {isMobile && sheet === "settings" && (
               <BottomSheet key="settings" p={p} onClose={() => setSheet(null)}>
                 <MobileSettings palette={p} paletteKey={paletteKey} onPalette={setPaletteKey} theme={theme} onTheme={patchTheme} />
-              </BottomSheet>
-            )}
-            {isMobile && sheet === "lang" && (
-              <BottomSheet key="lang" p={p} onClose={() => setSheet(null)}>
-                <MobileLang
-                  palette={p}
-                  lang={lang}
-                  onLang={(l) => {
-                    changeLanguage(l);
-                    setSheet(null);
-                  }}
-                />
               </BottomSheet>
             )}
           </AnimatePresence>

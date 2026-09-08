@@ -4,10 +4,10 @@ import { DOC_PARAM, DOCZ_PARAM, hasShareHash, readShareHash, shareable, shareLin
 import type { Doc, Item } from "./tokens";
 
 const doc = (): Doc => ({
-  title: "設計 中文 한국어 🎨 + & # %", brief: "First line\nSecond line", paletteKey: "purple", frame: "phone", platform: "web",
+  title: "Design Showcase 🎨 + & # %", brief: "First line\nSecond line", paletteKey: "purple", frame: "phone", platform: "web",
   frames: [{ id: "f", name: "Home", x: 0, y: 0, w: 1280, h: 800, note: "Keep frame note", noteHistory: ["Private frame draft"] }],
   groups: [{ id: "g", x: -10, y: 20, axis: "x", items: [
-    { id: "i", kind: "image", label: "画像", icon: null, variant: "filled", src: "data:image/png;base64,AAAA", note: "Keep item note", noteHistory: ["Private item draft"] },
+    { id: "i", kind: "image", label: "Featured Image", icon: null, variant: "filled", src: "data:image/png;base64,AAAA", note: "Keep item note", noteHistory: ["Private item draft"] },
     { id: "remote", kind: "image", label: "Public image", icon: null, variant: "filled", src: "https://example.test/image.png" },
   ] }],
 });
@@ -26,7 +26,7 @@ describe("shareable", () => {
       ...value,
       frames: value.frames.map(({ noteHistory: _history, ...frame }) => frame),
       groups: value.groups.map((group) => ({ ...group, items: [
-        { id: "i", kind: "image", label: "画像", icon: null, variant: "filled", note: "Keep item note" },
+        { id: "i", kind: "image", label: "Featured Image", icon: null, variant: "filled", note: "Keep item note" },
         { id: "remote", kind: "image", label: "Public image", icon: null, variant: "filled", src: "https://example.test/image.png" },
       ] })),
     });

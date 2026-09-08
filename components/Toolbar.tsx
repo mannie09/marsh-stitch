@@ -78,7 +78,6 @@ export function Toolbar({
   mobile,
   onPrompt,
   onSettings,
-  onLangSheet,
   tidy,
   onTidy,
   place,
@@ -113,8 +112,6 @@ export function Toolbar({
   mobile?: boolean;
   onPrompt?: () => void;
   onSettings?: () => void;
-  /** phone: open the language sheet instead of the menu */
-  onLangSheet?: () => void;
   /** the tidy button for the screen being worked on; absent when no screen is in play */
   tidy?: TidyState;
   onTidy?: () => void;
@@ -155,7 +152,6 @@ export function Toolbar({
         <Pill p={p}>
           <IconBtn icon="undo" p={p} onClick={onUndo} disabled={!canUndo} title={t("undo", lang)} size={S} />
           <IconBtn icon="redo" p={p} onClick={onRedo} disabled={!canRedo} title={t("redo", lang)} size={S} />
-          <IconBtn icon="translate" p={p} onClick={onLangSheet} title={t("language", lang)} size={S} />
           <IconBtn icon="palette" p={p} onClick={onSettings} title={t("settings", lang)} size={S} />
           <GitHubLink p={p} size={S} />
           <button

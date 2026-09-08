@@ -3,9 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Palette } from "@/lib/tokens";
-import { LANGS, Lang, t, useLang } from "@/lib/i18n";
 import { IconBtn } from "./ui";
-import { Icon } from "./M3Node";
 
 const EASE = [0.2, 0, 0, 1] as const;
 
@@ -71,50 +69,5 @@ export function Popover({
         )}
       </AnimatePresence>
     </div>
-  );
-}
-
-export function LangMenu({ p, onLang, side, size }: { p: Palette; onLang: (l: Lang) => void; side?: "down" | "right"; size?: number }) {
-  const lang = useLang();
-  return (
-    <Popover p={p} icon="translate" title={t("language", lang)} side={side} size={size}>
-      {(close) => (
-        <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 140 }}>
-          {LANGS.map((l) => {
-            const on = l.key === lang;
-            return (
-              <button
-                key={l.key}
-                role="menuitemradio"
-                aria-checked={on}
-                onClick={() => {
-                  onLang(l.key);
-                  close();
-                }}
-                className="m3-press"
-                style={{
-                  height: 40,
-                  padding: "0 14px 0 10px",
-                  borderRadius: 12,
-                  border: "none",
-                  background: on ? p.secondaryContainer : "transparent",
-                  color: on ? p.onSecondaryContainer : p.onSurface,
-                  fontSize: 13,
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <span style={{ width: 18, display: "inline-flex" }}>{on && <Icon name="check" size={18} />}</span>
-                {l.label}
-              </button>
-            );
-          })}
-        </div>
-      )}
-    </Popover>
   );
 }
