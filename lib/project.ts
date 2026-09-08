@@ -70,12 +70,31 @@ export const projectFileName = (doc: Doc) => {
   return name ? `marsh-stitch ${name}.json` : "marsh-stitch.json";
 };
 
+export const yamlFileName = (doc: Doc) => {
+  const name = doc.title
+    .trim()
+    .replace(/[\\/:*?"<>|]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return name ? `marsh-stitch ${name}.yaml` : "marsh-stitch.yaml";
+};
+
 /** hands the document to the browser as a JSON download */
 export function saveProject(doc: Doc) {
   const url = URL.createObjectURL(new Blob([JSON.stringify(doc, null, 2)], { type: "application/json" }));
   const a = document.createElement("a");
   a.href = url;
   a.download = projectFileName(doc);
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
+/** hands the generated YAML to the browser as a download */
+export function saveYaml(doc: Doc, yamlText: string) {
+  const url = URL.createObjectURL(new Blob([yamlText], { type: "text/yaml;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = yamlFileName(doc);
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 0);
 }
