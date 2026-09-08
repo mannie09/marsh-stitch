@@ -72,6 +72,7 @@ import {
   SNAP_MAIN,
   Transition,
   TRANSITIONS,
+  TAPPABLE,
   uid,
   uniformRadii,
   FULL_WIDTH,
@@ -87,6 +88,7 @@ import { PartsPalette } from "@/components/PartsPalette";
 import { PromptPanel } from "@/components/PromptPanel";
 import { GitHubLink, Mode, Toolbar } from "@/components/Toolbar";
 import { TemplatesModal } from "@/components/TemplatesModal";
+import { ConnectorHandle } from "@/components/ConnectorHandle";
 import { AiActionKey, AiPanel, aiErrorText } from "@/components/AiPanel";
 import { TidyState } from "@/components/ui";
 import { AiSettings, DEFAULT_AI, hasKey, isSecureUrl, loadAiSettings, proposeBehavior, proposeDescription, pushHistory, saveAiSettings } from "@/lib/ai";
@@ -428,6 +430,18 @@ export default function Page() {
   const [gesture, setGesture] = useState<Gesture | null>(null);
   const [widths, setWidths] = useState<Record<string, number>>({});
   const [resizing, setResizing] = useState<"left" | "right" | null>(null);
+  /** in-flight drag-to-connect state (Figma / Miro style) */
+  const [connectingLink, setConnectingLink] = useState<{
+    fromItemId: string;
+    sourceFrameId: string | null;
+    sx: number;
+    sy: number;
+    cx: number;
+    cy: number;
+    targetFrameId: string | null;
+  } | null>(null);
+  const connectingLinkRef = useRef(connectingLink);
+  connectingLinkRef.current = connectingLink;
   const [, bumpHistory] = useState(0);
   /* ---------- tidy and ai ---------- */
   /** the groups before and after the last tidy; "undo" is offered only while the after-state is still current */
@@ -1688,6 +1702,86 @@ export default function Page() {
     };
   }, [resizing]);
 
+  /* ---------- drag-to-connect interaction (Figma / Miro style) ---------- */
+  const startConnecting = useCallback(
+    (e: React.PointerEvent, item: Item, sx: number, sy: number) => {
+      const g = groupsRef.current.find((grp) => grp.items.some((it) => it.id === item.id));
+      const sourceFrame = g ? frameOfGroup(g, framesRef.current, widthsRef.current) : null;
+      setConnectingLink({
+        fromItemId: item.id,
+        sourceFrameId: sourceFrame ? sourceFrame.id : null,
+        sx,
+        sy,
+        cx: sx,
+        cy: sy,
+        targetFrameId: null,
+      });
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (!connectingLink) return;
+    const move = (e: PointerEvent) => {
+      const pt = toWorld(e.clientX, e.clientY);
+      let hitFrame: Frame | null = null;
+      for (const f of framesRef.current) {
+        if (f.id === connectingLink.sourceFrameId) continue;
+        const fr = frameRect(f);
+        if (pt.x >= fr.l - 28 && pt.x <= fr.r + 28 && pt.y >= fr.t - 28 && pt.y <= fr.b + 28) {
+          hitFrame = f;
+          break;
+        }
+      }
+      setConnectingLink((cur) =>
+        cur
+          ? {
+              ...cur,
+              cx: pt.x,
+              cy: pt.y,
+              targetFrameId: hitFrame ? hitFrame.id : null,
+            }
+          : null,
+      );
+    };
+
+    const up = () => {
+      const cur = connectingLinkRef.current;
+      if (cur && cur.targetFrameId) {
+        snapshot();
+        setGroups((gs) =>
+          gs.map((g) => ({
+            ...g,
+            items: g.items.map((it) =>
+              it.id === cur.fromItemId
+                ? {
+                    ...it,
+                    action: {
+                      to: cur.targetFrameId!,
+                      transition: it.action?.transition ?? "slide",
+                    },
+                  }
+                : it,
+            ),
+          })),
+        );
+        setSelectedLinkId(`${cur.fromItemId}|`);
+      }
+      setConnectingLink(null);
+    };
+
+    const cancel = () => setConnectingLink(null);
+
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", cancel);
+    return () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", cancel);
+    };
+  }, [connectingLink, toWorld, snapshot]);
+
   /* ---------- editing ---------- */
   const primaryId = selectedIds[selectedIds.length - 1] ?? null;
   const selected = useMemo(() => {
@@ -2818,6 +2912,10 @@ export default function Page() {
         return;
       }
       if (e.key === "Escape") {
+        if (connectingLinkRef.current) {
+          setConnectingLink(null);
+          return;
+        }
         setSelectedIds([]);
         setSelectedFrameId(null);
         setSelectedLinkId(null);
@@ -3565,6 +3663,7 @@ export default function Page() {
               {frame === "phone" &&
                 frames.map((f) => {
                   const on = f.id === selectedFrameId;
+                  const isDropTarget = connectingLink?.targetFrameId === f.id;
                   const bg = p[f.bg ?? "surface"];
                   const { w, h } = frameSizeOf(f);
                   const radius = frameRadius(f);
@@ -3590,7 +3689,7 @@ export default function Page() {
                           padding: "0 8px",
                           fontSize: 20,
                           fontWeight: 600,
-                          color: on ? p.primary : p.onSurfaceVariant,
+                          color: on ? p.primary : isDropTarget ? p.primary : p.onSurfaceVariant,
                           cursor: handMode ? "grab" : "move",
                           userSelect: "none",
                           whiteSpace: "nowrap",
@@ -3602,6 +3701,33 @@ export default function Page() {
                         </div>
                         {f.name || t("screen", lang)}
                       </div>
+                      {isDropTarget && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            left: "50%",
+                            top: -BEZEL - 10,
+                            transform: `translateX(-50%) scale(${clamp(1 / view.z, 0.7, 1.3)})`,
+                            transformOrigin: "bottom center",
+                            padding: "4px 12px",
+                            borderRadius: 16,
+                            background: p.primary,
+                            color: p.onPrimary,
+                            fontSize: 12,
+                            fontWeight: 700,
+                            boxShadow: "0 4px 16px rgba(0,0,0,0.28)",
+                            zIndex: 120,
+                            pointerEvents: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 6,
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          <Icon name="link" size={16} />
+                          <span>Drop to connect</span>
+                        </div>
+                      )}
                       <div
                         onPointerDown={(e) => onFramePointerDown(e, f)}
                         style={{
@@ -3618,6 +3744,8 @@ export default function Page() {
                           animation: draftBusy ? "m3e-drift 3s ease-in-out infinite" : undefined,
                           boxShadow: on
                             ? `0 0 0 3px ${p.primary}, 0 18px 50px rgba(0,0,0,0.16)`
+                            : isDropTarget
+                            ? `0 0 0 4px ${p.primary}, 0 0 28px ${p.primary}88, 0 18px 50px rgba(0,0,0,0.24)`
                             : "0 18px 50px rgba(0,0,0,0.14)",
                           cursor: handMode ? "grab" : "move",
                           transition: `box-shadow 120ms, ${SIZE_TRANSITION}`,
@@ -3660,7 +3788,7 @@ export default function Page() {
                 .map((g) => renderGroup(g, 0, 0))}
 
 
-              {links.length > 0 && (
+              {(links.length > 0 || connectingLink) && (
                 <svg
                   style={{
                     position: "absolute",
@@ -3715,6 +3843,53 @@ export default function Page() {
                       </g>
                     );
                   })}
+
+                  {/* Active in-flight connecting link arrow (Figma / Miro style) */}
+                  {connectingLink && (() => {
+                    const sx = connectingLink.sx;
+                    const sy = connectingLink.sy;
+                    let tx = connectingLink.cx;
+                    let ty = connectingLink.cy;
+                    const targetFrame = frames.find((f) => f.id === connectingLink.targetFrameId);
+                    if (targetFrame) {
+                      const tfr = frameRect(targetFrame);
+                      const rightward = (tfr.l + tfr.r) / 2 >= sx;
+                      tx = rightward ? tfr.l - BEZEL : tfr.r + BEZEL;
+                      ty = clamp(connectingLink.cy, tfr.t + 40, tfr.b - 40);
+                    }
+                    const rightward = tx >= sx;
+                    const dx = Math.max(50, Math.abs(tx - sx) * 0.45);
+                    const c1x = sx + (rightward ? dx : -dx);
+                    const c2x = tx + (rightward ? -dx : dx);
+                    const d = `M${sx} ${sy} C${c1x} ${sy} ${c2x} ${ty} ${tx} ${ty}`;
+                    return (
+                      <g key="__connecting_link">
+                        <path
+                          d={d}
+                          fill="none"
+                          stroke={p.primary}
+                          strokeWidth={3 / view.z}
+                          strokeDasharray="6 6"
+                          strokeLinecap="round"
+                          markerEnd="url(#m3e-arrow)"
+                          className="m3e-animated-dash"
+                          style={{
+                            filter: `drop-shadow(0 0 6px ${p.primary}88)`,
+                          }}
+                        />
+                        <circle cx={sx} cy={sy} r={4 / view.z} fill={p.primary} />
+                        <circle
+                          cx={tx}
+                          cy={ty}
+                          r={6 / view.z}
+                          fill={p.primary}
+                          stroke={p.surface}
+                          strokeWidth={2 / view.z}
+                          style={{ filter: `drop-shadow(0 0 8px ${p.primary})` }}
+                        />
+                      </g>
+                    );
+                  })()}
                 </svg>
               )}
 
@@ -3805,6 +3980,24 @@ export default function Page() {
                   }}
                 />
               )}
+
+              {/* Figma / Miro style Visual Connector Handle on selected item */}
+              {(() => {
+                if (frame !== "phone" || handMode || !selected || !TAPPABLE.includes(selected.kind)) return null;
+                const rect = itemRects().find((r) => r.id === selected.id);
+                if (!rect) return null;
+                return (
+                  <ConnectorHandle
+                    x={rect.r}
+                    y={(rect.t + rect.b) / 2}
+                    zoom={view.z}
+                    palette={p}
+                    active={connectingLink?.fromItemId === selected.id}
+                    hasLink={!!selected.action || Object.keys(selected.actions ?? {}).length > 0}
+                    onStartConnect={(e) => startConnecting(e, selected, rect.r, (rect.t + rect.b) / 2)}
+                  />
+                );
+              })()}
             </div>
           </div>
 

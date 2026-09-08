@@ -227,3 +227,14 @@ input.m3-number {
   border-top-right-radius: 22px !important;
   border-bottom-right-radius: 22px !important;
 }
+
+/* active drag-to-connect line dash animation (Figma/Miro style) */
+@keyframes m3e-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.m3e-animated-dash {
+  animation: m3e-dash 0.8s linear infinite;
+}
+
