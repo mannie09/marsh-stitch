@@ -4,7 +4,7 @@ import "./globals.css";
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://lnkiai.github.io"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://mannie09.github.io"),
   title: "M3E Canvas",
   description:
     "Sketch Material 3 Expressive screens in the browser and turn them into vibe-coding prompts. / Material 3 Expressive の画面をブラウザで組み立てて、そのままプロンプトに。",

@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <img src="app/icon.svg" width="72" alt="" />
 </p>
 
@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <a href="https://lnkiai.github.io/m3e-canvas/"><img alt="Live demo" src="https://img.shields.io/badge/demo-lnkiai.github.io%2Fm3e--canvas-6750A4?logo=googlechrome&logoColor=white" /></a>
-  <a href="https://github.com/lnkiai/m3e-canvas/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/lnkiai/m3e-canvas/actions/workflows/deploy.yml/badge.svg" /></a>
-  <a href="https://github.com/lnkiai/m3e-canvas/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/lnkiai/m3e-canvas?style=flat&logo=github&color=6750A4" /></a>
+  <a href="https://mannie09.github.io/m3e-canvas/"><img alt="Live demo" src="https://img.shields.io/badge/demo-mannie09.github.io%2Fm3e--canvas-6750A4?logo=googlechrome&logoColor=white" /></a>
+  <a href="https://github.com/mannie09/m3e-canvas/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/mannie09/m3e-canvas/actions/workflows/deploy.yml/badge.svg" /></a>
+  <a href="https://github.com/mannie09/m3e-canvas/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/mannie09/m3e-canvas?style=flat&logo=github&color=6750A4" /></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
-  <a href="https://github.com/sponsors/lnkiai"><img alt="Sponsor" src="https://img.shields.io/badge/sponsor-%E2%9D%A4-EA4AAA?logo=githubsponsors&logoColor=white" /></a>
+  <a href="https://github.com/sponsors/mannie09"><img alt="Sponsor" src="https://img.shields.io/badge/sponsor-%E2%9D%A4-EA4AAA?logo=githubsponsors&logoColor=white" /></a>
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs" />
   <img alt="React" src="https://img.shields.io/badge/React-19-20232a?logo=react&logoColor=61DAFB" />
   <img alt="Material 3 Expressive" src="https://img.shields.io/badge/Material%203-Expressive-EADDFF?logo=materialdesign&logoColor=6750A4" />
@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  <a href="#日本語">日本語</a> · <a href="#中文">中文</a> · <a href="#한국어">한국어</a> · <a href="https://lnkiai.github.io/m3e-canvas/">Open the app</a>
+  <a href="#日本語">日本語</a> · <a href="#中文">中文</a> · <a href="#한국어">한국어</a> · <a href="https://mannie09.github.io/m3e-canvas/">Open the app</a>
 </p>
 
 ![Sketching a recipes app in M3E Canvas, changing its theme, copying the prompt, an AI coding tool building it, and the app running on Android](docs/story.gif)
@@ -88,11 +88,11 @@ The app is a static Next.js export. To host it under a sub-path (for example a G
 
 ## Contributing
 
-Bug reports, part requests and pull requests are welcome. [CONTRIBUTING.md](CONTRIBUTING.md) explains the setup, the conventions (English comments, four languages for every string) and where each kind of change lives. Questions go to [Discussions](https://github.com/lnkiai/m3e-canvas/discussions).
+Bug reports, part requests and pull requests are welcome. [CONTRIBUTING.md](CONTRIBUTING.md) explains the setup, the conventions (English comments, four languages for every string) and where each kind of change lives. Questions go to [Discussions](https://github.com/mannie09/m3e-canvas/discussions).
 
 ## Support
 
-M3E Canvas is free and MIT-licensed, and stays that way. If it saves you time, you can [sponsor the work on GitHub](https://github.com/sponsors/lnkiai); it pays for the hours that go into new parts, the prompt, and reviewing contributions. No feature is behind sponsorship.
+M3E Canvas is free and MIT-licensed, and stays that way. If it saves you time, you can [sponsor the work on GitHub](https://github.com/sponsors/mannie09); it pays for the hours that go into new parts, the prompt, and reviewing contributions. No feature is behind sponsorship.
 
 Thanks to the sponsors who keep this going:
 
@@ -110,7 +110,7 @@ Thanks to the sponsors who keep this going:
 
 ## License
 
-MIT © lnkiai
+MIT © mannie09
 
 ---
 
@@ -118,7 +118,7 @@ MIT © lnkiai
 
 **Material 3 Expressive の画面をブラウザで組み立てて、画面同士をつなぎ、タップして確かめ、そのまま AI コーディング用のプロンプトにするツールです。**
 
-公開版: https://lnkiai.github.io/m3e-canvas/
+公開版: https://mannie09.github.io/m3e-canvas/
 
 ![M3E Canvas でレシピアプリを組み、テーマを変え、プロンプトをコピーして AI コーディングツールに渡し、Android で動かすまで](docs/story.gif)
 
@@ -157,11 +157,11 @@ npm run build      # ./out に静的書き出し
 
 ### 貢献
 
-バグ報告、部品のリクエスト、PR を歓迎します。手順と約束事は [CONTRIBUTING.md](CONTRIBUTING.md) にまとめています。質問は [Discussions](https://github.com/lnkiai/m3e-canvas/discussions) へどうぞ。
+バグ報告、部品のリクエスト、PR を歓迎します。手順と約束事は [CONTRIBUTING.md](CONTRIBUTING.md) にまとめています。質問は [Discussions](https://github.com/mannie09/m3e-canvas/discussions) へどうぞ。
 
 ### 支援
 
-M3E Canvas は無料で MIT ライセンスのまま続けます。時間の節約になったら、[GitHub Sponsors](https://github.com/sponsors/lnkiai) で開発を支えてもらえると助かります。新しい部品、プロンプトの調整、貢献のレビューにかかる時間に充てます。支援の有無で使える機能は変わりません。
+M3E Canvas は無料で MIT ライセンスのまま続けます。時間の節約になったら、[GitHub Sponsors](https://github.com/sponsors/mannie09) で開発を支えてもらえると助かります。新しい部品、プロンプトの調整、貢献のレビューにかかる時間に充てます。支援の有無で使える機能は変わりません。
 
 開発を支えてくださっているスポンサーの方々に感謝します。
 
@@ -169,7 +169,7 @@ M3E Canvas は無料で MIT ライセンスのまま続けます。時間の節�
 
 ### ライセンス
 
-MIT © lnkiai
+MIT © mannie09
 
 ---
 
@@ -177,7 +177,7 @@ MIT © lnkiai
 
 **在浏览器中拼装 Material 3 Expressive 界面，把屏幕连起来、点一点试试，然后直接变成给 AI 编程工具的提示词。**
 
-在线版本：https://lnkiai.github.io/m3e-canvas/
+在线版本：https://mannie09.github.io/m3e-canvas/
 
 ![在 M3E Canvas 中拼装食谱应用、更换主题、复制提示词、交给 AI 编程工具构建，最后在 Android 上运行](docs/story.gif)
 
@@ -216,11 +216,11 @@ npm run build      # 静态导出到 ./out
 
 ### 参与贡献
 
-欢迎 Bug 报告、组件请求和 PR。步骤和约定见 [CONTRIBUTING.md](CONTRIBUTING.md)。提问请到 [Discussions](https://github.com/lnkiai/m3e-canvas/discussions)。
+欢迎 Bug 报告、组件请求和 PR。步骤和约定见 [CONTRIBUTING.md](CONTRIBUTING.md)。提问请到 [Discussions](https://github.com/mannie09/m3e-canvas/discussions)。
 
 ### 支持
 
-M3E Canvas 免费且采用 MIT 许可证，今后也不会改变。如果它为你节省了时间，欢迎在 [GitHub Sponsors](https://github.com/sponsors/lnkiai) 上支持开发；这些支持将用于新组件、提示词的打磨和审阅贡献所花的时间。没有任何功能因赞助而受限。
+M3E Canvas 免费且采用 MIT 许可证，今后也不会改变。如果它为你节省了时间，欢迎在 [GitHub Sponsors](https://github.com/sponsors/mannie09) 上支持开发；这些支持将用于新组件、提示词的打磨和审阅贡献所花的时间。没有任何功能因赞助而受限。
 
 感谢支持本项目的赞助者：
 
@@ -228,7 +228,7 @@ M3E Canvas 免费且采用 MIT 许可证，今后也不会改变。如果它为�
 
 ### 许可证
 
-MIT © lnkiai
+MIT © mannie09
 
 ---
 
@@ -236,7 +236,7 @@ MIT © lnkiai
 
 **Material 3 Expressive 화면을 브라우저에서 스케치하고, 화면끼리 연결하고, 탭해 보며, 그대로 AI 코딩 도구용 프롬프트로 만드는 도구입니다.**
 
-공개 버전: https://lnkiai.github.io/m3e-canvas/
+공개 버전: https://mannie09.github.io/m3e-canvas/
 
 ![M3E Canvas에서 레시피 앱을 만들고, 테마를 바꾸고, 프롬프트를 복사해 AI 코딩 도구에 전달하고, Android에서 실행하기까지](docs/story.gif)
 
@@ -275,11 +275,11 @@ npm run build      # ./out 에 정적 내보내기
 
 ### 기여
 
-버그 보고, 부품 요청, PR을 환영합니다. 절차와 약속은 [CONTRIBUTING.md](CONTRIBUTING.md)에 정리되어 있습니다. 질문은 [Discussions](https://github.com/lnkiai/m3e-canvas/discussions)로 보내 주세요.
+버그 보고, 부품 요청, PR을 환영합니다. 절차와 약속은 [CONTRIBUTING.md](CONTRIBUTING.md)에 정리되어 있습니다. 질문은 [Discussions](https://github.com/mannie09/m3e-canvas/discussions)로 보내 주세요.
 
 ### 후원
 
-M3E Canvas는 무료이며 MIT 라이선스로 계속 유지됩니다. 시간을 아끼는 데 도움이 되었다면 [GitHub Sponsors](https://github.com/sponsors/lnkiai)에서 개발을 후원해 주세요. 새 부품, 프롬프트 다듬기, 기여 검토에 드는 시간에 쓰입니다. 후원 여부로 기능이 달라지지 않습니다.
+M3E Canvas는 무료이며 MIT 라이선스로 계속 유지됩니다. 시간을 아끼는 데 도움이 되었다면 [GitHub Sponsors](https://github.com/sponsors/mannie09)에서 개발을 후원해 주세요. 새 부품, 프롬프트 다듬기, 기여 검토에 드는 시간에 쓰입니다. 후원 여부로 기능이 달라지지 않습니다.
 
 개발을 이어갈 수 있게 후원해 주신 분들께 감사드립니다.
 
@@ -287,4 +287,4 @@ M3E Canvas는 무료이며 MIT 라이선스로 계속 유지됩니다. 시간을
 
 ### 라이선스
 
-MIT © lnkiai
+MIT © mannie09
