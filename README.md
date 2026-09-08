@@ -1,4 +1,4 @@
-﻿<p align="center">
+<p align="center">
   <img src="app/icon.svg" width="72" alt="" />
 </p>
 
@@ -21,16 +21,8 @@
 </p>
 
 <p align="center">
-  <a href="https://trendshift.io/repositories/208608"><img alt="Trendshift: #1 repository of the day" src="https://trendshift.io/api/badge/trendshift/repositories/208608/daily" width="250" height="55" /></a>
+  <a href="https://mannie09.github.io/m3e-canvas/"><strong>Open the app</strong></a>
 </p>
-
-<p align="center">
-  <a href="https://mannie09.github.io/m3e-canvas/">Open the app</a>
-</p>
-
-![Sketching a recipes app in M3E Canvas, changing its theme, copying the prompt, an AI coding tool building it, and the app running on Android](docs/story.gif)
-
-<p align="center"><sub>Sketch a recipes app, retheme it, copy the prompt, hand it to an AI coding tool, and run the result on Android. (<a href="docs/story.mp4">mp4</a>)</sub></p>
 
 Works with any AI coding tool that takes a prompt, such as Claude Code, Codex, Gemini CLI or Cursor: copy the prompt, paste it into the tool, and ask for the app.
 
@@ -52,15 +44,6 @@ Works with any AI coding tool that takes a prompt, such as Claude Code, Codex, G
 - **Share links and AI drafts (beta)** – copy a link that opens your design on anyone's canvas, or copy an instruction for Claude Code, Codex or another coding agent: it reads [agent.md](public/agent.md), sketches what you described, and replies with such a link.
 - **Alignment guides**, undo/redo, keyboard shortcuts, seven color themes, a favorites row in the parts panel, and everything is saved in your browser (localStorage).
 - **Phone-friendly** – on a phone you get one fixed screen and a buttons-only editor: tap the plus to add a button, tap a button to move it, and edit its text, icon and style in a bottom sheet. The full multi-screen editor is for desktop browsers.
-
-<table>
-  <tr>
-    <td width="50%"><img src="docs/preview.png" alt="Tap-through preview" /><br /><sub>Preview: tap a part and the linked screen slides in.</sub></td>
-    <td width="50%"><img src="docs/prompt.png" alt="Prompt panel" /><br /><sub>Prompt: the design as a concise brief.</sub></td>
-  </tr>
-</table>
-
-<p align="center"><img src="docs/mobile.png" width="240" alt="Phone version" /><br /><sub>Phone: one screen, buttons only, edited in a bottom sheet.</sub></p>
 
 ## Keyboard
 
