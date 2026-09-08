@@ -132,11 +132,11 @@ describe("isProject", () => {
 
 describe("projectFileName", () => {
   it.each([
-    ["", "m3e-canvas.json"], [" \t\n ", "m3e-canvas.json"],
-    ['\\/:*?"<>|', "m3e-canvas.json"],
-    ["  My\t app\n name  ", "m3e-canvas My app name.json"],
-    ['a\\b/c:d*e?f"g<h>i|j', "m3e-canvas a b c d e f g h i j.json"],
-    ["Design Project 🎨.v2", "m3e-canvas Design Project 🎨.v2.json"],
+    ["", "marsh-stitch.json"], [" \t\n ", "marsh-stitch.json"],
+    ['\\/:*?"<>|', "marsh-stitch.json"],
+    ["  My\t app\n name  ", "marsh-stitch My app name.json"],
+    ['a\\b/c:d*e?f"g<h>i|j', "marsh-stitch a b c d e f g h i j.json"],
+    ["Design Project 🎨.v2", "marsh-stitch Design Project 🎨.v2.json"],
   ])("sanitizes %j to %j", (title, expected) => {
     expect(projectFileName({ ...doc(), title })).toBe(expected);
   });

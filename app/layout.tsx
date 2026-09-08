@@ -5,11 +5,11 @@ const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://mannie09.github.io"),
-  title: "M3E Canvas",
+  title: "Marsh-Stitch",
   description:
     "Sketch Material 3 Expressive screens in the browser and turn them into vibe-coding prompts.",
   openGraph: {
-    title: "M3E Canvas",
+    title: "Marsh-Stitch",
     description: "Design Material 3 Expressive screens, link them, preview them, and copy a prompt for your AI coding tool.",
     images: [`${BASE}/og.png`],
     type: "website",

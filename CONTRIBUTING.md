@@ -1,4 +1,4 @@
-﻿# Contributing to M3E Canvas
+# Contributing to Marsh-Stitch
 
 Thanks for your interest. This page explains how to report problems, propose
 changes and send code. 
@@ -10,7 +10,7 @@ changes and send code.
   issue first so we can agree on the shape of the change before you spend
   time on it. Material 3 Expressive has a specific vocabulary, and the prompt
   is tuned carefully; a short discussion up front saves rework.
-- **Questions and ideas**: use [Discussions](https://github.com/mannie09/m3e-canvas/discussions).
+- **Questions and ideas**: use [Discussions](https://github.com/mannie09/marsh-stitch/discussions).
 
 ## Setting up
 

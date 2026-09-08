@@ -2,16 +2,16 @@
   <img src="app/icon.svg" width="72" alt="" />
 </p>
 
-<h1 align="center">M3E Canvas</h1>
+<h1 align="center">Marsh-Stitch</h1>
 
 <p align="center">
   <strong>Sketch Material 3 Expressive screens in the browser, link them, tap through them, and copy a prompt for your AI coding tool.</strong>
 </p>
 
 <p align="center">
-  <a href="https://mannie09.github.io/m3e-canvas/"><img alt="Live demo" src="https://img.shields.io/badge/demo-mannie09.github.io%2Fm3e--canvas-6750A4?logo=googlechrome&logoColor=white" /></a>
-  <a href="https://github.com/mannie09/m3e-canvas/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/mannie09/m3e-canvas/actions/workflows/deploy.yml/badge.svg" /></a>
-  <a href="https://github.com/mannie09/m3e-canvas/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/mannie09/m3e-canvas?style=flat&logo=github&color=6750A4" /></a>
+  <a href="https://mannie09.github.io/marsh-stitch/"><img alt="Live demo" src="https://img.shields.io/badge/demo-mannie09.github.io%2Fmarsh--stitch-6750A4?logo=googlechrome&logoColor=white" /></a>
+  <a href="https://github.com/mannie09/marsh-stitch/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/mannie09/marsh-stitch/actions/workflows/deploy.yml/badge.svg" /></a>
+  <a href="https://github.com/mannie09/marsh-stitch/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/mannie09/marsh-stitch?style=flat&logo=github&color=6750A4" /></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
   <a href="https://github.com/sponsors/mannie09"><img alt="Sponsor" src="https://img.shields.io/badge/sponsor-%E2%9D%A4-EA4AAA?logo=githubsponsors&logoColor=white" /></a>
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs" />
@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <a href="https://mannie09.github.io/m3e-canvas/"><strong>Open the app</strong></a>
+  <a href="https://mannie09.github.io/marsh-stitch/"><strong>Open the app</strong></a>
 </p>
 
 Works with any AI coding tool that takes a prompt, such as Claude Code, Codex, Gemini CLI or Cursor: copy the prompt, paste it into the tool, and ask for the app.
@@ -71,11 +71,11 @@ The app is a static Next.js export. To host it under a sub-path (for example a G
 
 ## Contributing
 
-Bug reports, part requests and pull requests are welcome. [CONTRIBUTING.md](CONTRIBUTING.md) explains the setup, the conventions (English comments) and where each kind of change lives. Questions go to [Discussions](https://github.com/mannie09/m3e-canvas/discussions).
+Bug reports, part requests and pull requests are welcome. [CONTRIBUTING.md](CONTRIBUTING.md) explains the setup, the conventions (English comments) and where each kind of change lives. Questions go to [Discussions](https://github.com/mannie09/marsh-stitch/discussions).
 
 ## Support
 
-M3E Canvas is free and MIT-licensed, and stays that way. If it saves you time, you can [sponsor the work on GitHub](https://github.com/sponsors/mannie09); it pays for the hours that go into new parts, the prompt, and reviewing contributions. No feature is behind sponsorship.
+Marsh-Stitch is free and MIT-licensed, and stays that way. If it saves you time, you can [sponsor the work on GitHub](https://github.com/sponsors/mannie09); it pays for the hours that go into new parts, the prompt, and reviewing contributions. No feature is behind sponsorship.
 
 Thanks to the sponsors who keep this going:
 

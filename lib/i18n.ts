@@ -100,7 +100,7 @@ export const UI = {
   askAiIdeaFallback: { en: "(describe what to build here)" },
   askAiCopy: { en: "Copy the instruction" },
   askAiText: {
-    en: "Make an M3E Canvas sketch. First read {url} and follow it: build the design as JSON and reply with a share link. If you cannot run code, reply with the JSON in a code block (it will be saved to a file and opened). No verification is needed.\n\nWhat to build: {idea}",
+    en: "Make a Marsh-Stitch sketch. First read {url} and follow it: build the design as JSON and reply with a share link. If you cannot run code, reply with the JSON in a code block (it will be saved to a file and opened). No verification is needed.\n\nWhat to build: {idea}",
   },
   askAiGenerate: { en: "Draft with AI" },
   askAiPasted: { en: "Paste it into your AI agent" },

@@ -1,5 +1,5 @@
 {
-  "name": "m3e-canvas",
+  "name": "marsh-stitch",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -32,7 +32,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mannie09/m3e-canvas.git"
+    "url": "https://github.com/mannie09/marsh-stitch.git"
   },
-  "homepage": "https://mannie09.github.io/m3e-canvas/"
+  "homepage": "https://mannie09.github.io/marsh-stitch/"
 }
